@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A Note for Markee</title>
+  <style>
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; height: 100%; font-family: Arial, sans-serif; color: white; overflow: hidden; }
+    body {
+      background: radial-gradient(circle at 50% 35%, #4a0b22 0%, #260712 45%, #13030a 100%);
+    }
+    .screen { display: none; min-height: 100vh; padding: 64px 28px 40px; text-align: center; position: relative; }
+    .screen.active { display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    .heart-main { font-size: 88px; color: #ff5b7c; line-height: 1; margin-bottom: 55px; filter: drop-shadow(0 10px 24px rgba(255, 24, 89, .2)); }
+    .label { color: #ffadc0; font-weight: 700; letter-spacing: 11px; font-size: 18px; margin-bottom: 52px; }
+    h1 { font-family: Georgia, 'Times New Roman', serif; font-weight: 500; font-size: clamp(42px, 9vw, 58px); line-height: 1.48; margin: 0 auto 30px; max-width: 680px; }
+    .italic { font-family: Georgia, 'Times New Roman', serif; font-style: italic; font-size: clamp(28px, 6vw, 38px); color: #ffd3db; margin: 8px 0 42px; }
+    .signature { font-family: Georgia, 'Times New Roman', serif; font-size: 34px; color: #ff6b85; margin-bottom: 56px; }
+    button, a.btn { border: 0; text-decoration: none; cursor: pointer; border-radius: 999px; font-size: 30px; font-weight: 800; padding: 28px 44px; width: min(390px, 85vw); color: white; background: linear-gradient(135deg, #ff1f5f, #ff2363); box-shadow: 0 22px 48px rgba(255, 28, 91, .25); display: inline-block; }
+    .outline { background: transparent !important; border: 3px solid rgba(255, 105, 139, .6); color: #ffa7ba; box-shadow: none; }
+    .sub { color: #d9889d; font-size: 32px; font-weight: 700; margin: 10px 0 70px; }
+    .choice { margin: 14px 0; }
+    .result { font-family: Georgia, 'Times New Roman', serif; font-size: clamp(48px, 10vw, 64px); line-height: 1.1; margin: 0 0 28px; }
+    .answer-text { font-family: Georgia, 'Times New Roman', serif; font-style: italic; color: #ffd3db; font-size: 32px; margin-bottom: 70px; }
+    .send { background: rgba(255,255,255,.12); color: #ffd3db; border: 2px solid rgba(255,255,255,.2); box-shadow: none; font-size: 27px; }
+    .play { position: fixed; top: 30px; right: 28px; z-index: 10; width: 72px; height: 72px; border-radius: 50%; background: rgba(255,255,255,.12); border: 2px solid rgba(255,255,255,.18); color: #ffc5d0; display: flex; align-items: center; justify-content: center; font-size: 28px; padding-left: 6px; backdrop-filter: blur(8px); }
+    .floating-heart { position: absolute; color: rgba(255, 91, 124, .22); font-size: 42px; animation: float 8s infinite ease-in-out; pointer-events: none; }
+    .h1 { left: 14%; top: 58%; animation-delay: 0s; }
+    .h2 { right: 16%; top: 27%; animation-delay: 1.2s; }
+    .h3 { left: 38%; top: 14%; animation-delay: 2.3s; }
+    .h4 { right: 12%; bottom: 9%; animation-delay: 3.1s; }
+    @keyframes float { 0%, 100% { transform: translateY(0) scale(.9); opacity: .2;} 50% { transform: translateY(-35px) scale(1.1); opacity: .38;} }
+    @media (max-width: 480px) {
+      .screen { padding: 50px 22px 30px; }
+      .heart-main { font-size: 78px; margin-bottom: 48px; }
+      .label { letter-spacing: 7px; font-size: 15px; margin-bottom: 44px; }
+      h1 { font-size: 44px; line-height: 1.45; }
+      .italic { font-size: 28px; }
+      .signature { font-size: 31px; }
+      button, a.btn { font-size: 27px; padding: 24px 28px; }
+      .sub { font-size: 28px; margin-bottom: 58px; }
+      .result { font-size: 50px; }
+      .answer-text { font-size: 27px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Replace YOUR_PHONE_NUMBER_HERE with your number like 2145551234. No spaces or dashes. -->
+  <div class="play" onclick="window.open('https://www.youtube.com/results?search_query=Need+It+Bad+Brent+Faiyaz','_blank')">▶</div>
+
+  <section id="page1" class="screen active">
+    <span class="floating-heart h1">♥</span><span class="floating-heart h2">♥</span><span class="floating-heart h3">♥</span><span class="floating-heart h4">♥</span>
+    <div class="heart-main">♥</div>
+    <div class="label">A NOTE FOR MARKEE</div>
+    <h1>We've been on the go and under the weather since we got back from our trip...</h1>
+    <div class="italic">and I've been missing our adult time.</div>
+    <div class="signature">— Papa</div>
+    <button onclick="showPage('page2')">Keep reading →</button>
+  </section>
+
+  <section id="page2" class="screen">
+    <span class="floating-heart h1">♥</span><span class="floating-heart h2">♥</span><span class="floating-heart h3">♥</span><span class="floating-heart h4">♥</span>
+    <div class="heart-main">♥</div>
+    <h1>Will you have a quickie with me?</h1>
+    <div class="sub">Pick your time ↓</div>
+    <button class="choice" onclick="chooseTime('2:00pm', '🌤️')">🌤️ 2:00pm</button>
+    <button class="choice" onclick="chooseTime('5:00pm', '🌅')">🌅 5:00pm</button>
+    <button class="choice outline" onclick="chooseTime('later', '')">Maybe later</button>
+  </section>
+
+  <section id="page3" class="screen">
+    <span class="floating-heart h1">♥</span><span class="floating-heart h2">♥</span><span class="floating-heart h3">♥</span><span class="floating-heart h4">♥</span>
+    <div class="heart-main">♥</div>
+    <div class="result" id="resultTitle">You just made my day.</div>
+    <div class="answer-text" id="answerText">See you at 2:00pm, love. 🌤️</div>
+    <a id="sendLink" class="btn send" href="#">📱 Send this to him</a>
+  </section>
+
+  <script>
+    const phoneNumber = 'YOUR_PHONE_NUMBER_HERE';
+
+    function showPage(id) {
+      document.querySelectorAll('.screen').forEach(screen => screen.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
+
+    function chooseTime(time, emoji) {
+      const resultTitle = document.getElementById('resultTitle');
+      const answerText = document.getElementById('answerText');
+      const sendLink = document.getElementById('sendLink');
+      let body = '';
+
+      if (time === 'later') {
+        resultTitle.textContent = 'I can wait for you.';
+        answerText.textContent = 'Maybe later, love. ❤️';
+        body = 'Maybe later, love. ❤️';
+      } else {
+        resultTitle.textContent = 'You just made my day.';
+        answerText.textContent = `See you at ${time}, love. ${emoji}`;
+        body = `Yes ❤️ See you at ${time}, love. ${emoji}`;
+      }
+
+      sendLink.href = `sms:${phoneNumber}?&body=${encodeURIComponent(body)}`;
+      showPage('page3');
+    }
+  </script>
+</body>
+</html>
